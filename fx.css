@@ -367,3 +367,6 @@ html[data-theme] #laboratories h2{background:linear-gradient(90deg,#fff,var(--go
 @media(prefers-reduced-motion:reduce){
   html[data-theme] body .sec::before,html[data-theme] body .sec::after,.vx-shapes i,.vx-track,.site-header::after,.site-footer::before,html[data-theme] .fx-marquee,html[data-theme] body .sec h2,html[data-theme] #laboratories h2{animation:none!important}
 }
+
+/* Equipment-photos box removed from all centre pages (also hides it if an old cached lab-fx.js still adds it) */
+.lx-stats .lx-stat:nth-child(n+3){display:none!important}
