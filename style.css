@@ -164,3 +164,11 @@ html.drawer-open,html.drawer-open body{overflow:hidden}
 .nav-toggle:checked~.nav{display:flex}}
 @media(max-width:768px){.sec{padding:52px 0}.g2,.g3,.g4{grid-template-columns:1fr}.hero{padding:48px 0}.vision{padding:24px}.vision p{font-size:1.1rem}}
 @media(max-width:576px){.wrap{padding:0 16px}.brand b{font-size:.85rem}.fgrid{grid-template-columns:1fr}.fl ul{columns:1}dl{grid-template-columns:1fr}}
+/* Startup / Incubation and Other Facilities */
+.fac{margin:0;background:#fff;border:1px solid var(--line);overflow:hidden;transition:transform .25s,box-shadow .25s,border-color .25s}
+.fac:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(10,35,66,.1);border-color:var(--gold)}
+.fimg{aspect-ratio:16/10;background:linear-gradient(135deg,#e3eaff,#f4f6ff);overflow:hidden}
+.fimg img{width:100%;height:100%;object-fit:cover;display:block}
+.fimg.empty{display:flex;align-items:center;justify-content:center}
+.fimg.empty::after{content:"Image coming soon";color:var(--muted);font-size:.9rem}
+.fac figcaption{display:block;padding:14px 18px;font-weight:700;font-size:1rem;text-align:center;color:var(--navy);background:#fff;border-top:3px solid var(--royal)}

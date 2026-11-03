@@ -86,8 +86,8 @@ document.addEventListener('DOMContentLoaded',function(){
     var a=document.createElement(n.link?'a':'div');a.className='ncard';
     if(n.link){a.href=n.link;}
     if(clone){a.setAttribute('aria-hidden','true');a.tabIndex=-1;}
-    var img=document.createElement('img');img.src=encodeURI(n.image||'logo.jpeg');img.alt=clone?'':(n.title||'');
-    img.onerror=function(){img.onerror=null;img.src='logo.jpeg';};
+    var img=document.createElement('img');img.src=encodeURI(n.image||'logo.png');img.alt=clone?'':(n.title||'');
+    img.onerror=function(){img.onerror=null;img.src='logo.png';};
     var b=document.createElement('div');b.className='nbody';
     var t=document.createElement('span');t.className='ntag';t.textContent=(n.type||'News')+(n.date?' \u2022 '+n.date:'');
     var h=document.createElement('h4');h.textContent=n.title||'';
