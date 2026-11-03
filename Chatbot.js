@@ -44,7 +44,14 @@ function init(){
   var sb=el('button',null,'Send');sb.type='submit';f.appendChild(inp);f.appendChild(sb);
   p.appendChild(h);p.appendChild(log);p.appendChild(chips);p.appendChild(f);document.body.appendChild(p);document.body.appendChild(btn);
   function add(cls,parts){var m=el('div','cb-m '+cls);parts.forEach(function(x){if(typeof x==='string'){m.appendChild(el('div',null,x));}else{var a=el('a',null,x[0]);a.href=x[1];var d=el('div');d.appendChild(a);m.appendChild(d);}});log.appendChild(m);log.scrollTop=log.scrollHeight;}
-  function ask(q){if(!q.trim()){return;}add('me',[q]);add('bot',answer(q));}
+  function ask(q){
+    if(!q.trim()){return;}
+    add('me',[q]);
+    if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){add('bot',answer(q));return;}
+    var t=el('div','cb-m bot cb-typing');t.setAttribute('aria-hidden','true');t.appendChild(el('span'));t.appendChild(el('span'));t.appendChild(el('span'));
+    log.appendChild(t);log.scrollTop=log.scrollHeight;
+    setTimeout(function(){if(t.parentNode){t.parentNode.removeChild(t);}add('bot',answer(q));},560);
+  }
   function toggle(o){p.classList.toggle('open',o);btn.setAttribute('aria-expanded',o?'true':'false');if(o){if(!log.firstChild){add('bot',['Hello! I am the Nalanda Research Sanctum help assistant. Ask me about our centres, equipment, vision & mission, services or contact details.']);}inp.focus();}else{btn.focus();}}
   btn.addEventListener('click',function(){toggle(!p.classList.contains('open'));});
   x.addEventListener('click',function(){toggle(false);});

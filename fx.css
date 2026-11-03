@@ -1,0 +1,251 @@
+/* ==========================================================================
+   Nalanda Research Sanctum | VMKVEC  -  themes + motion (fx.css)
+   Load AFTER style.css. Pair with fx.js.
+   - Four colour themes (Royal Gold = original look, Midnight, Emerald, Sunset)
+   - Motion is only applied when <html> has the class "fx" (fx.js sets it, and
+     leaves it off for visitors who prefer reduced motion or switch Effects off).
+   ========================================================================== */
+
+/* ---------- 1. Theme tokens ---------- */
+:root,html[data-theme="royal"]{
+  --navy:#0b1f4d;--deep:#0b1f4d;--deep2:#16306f;--royal:#2f5bea;--gold:#f2b632;--on-gold:#0b1f4d;--on-royal:#fff;
+  --light:#e3eaff;--bg:#f4f6ff;--ink:#141b3a;--muted:#55607f;--line:#d9def0;--page:#fff;--card:#fff;--shadow:10,35,66;
+  --tint-a:#f1f4ff;--tint-b:#e4ebff;--vision-a:#e8eeff;--vision-b:#fff6dc;--inno-a:#eef2ff;--inno-b:#dde6ff;
+  --glow-1:#dfe7ff;--glow-2:#fff0c7;--warm-a:#fffaf0;--warm-b:#fff1cf;--lab-b:#1c3a8a;
+  --fx-dot:255,255,255;--fx-link:242,182,50;
+}
+html[data-theme="midnight"]{
+  --navy:#eaf0ff;--deep:#070c1b;--deep2:#122044;--royal:#7aa2ff;--gold:#ffc94d;--on-gold:#0a1020;--on-royal:#07102a;
+  --light:#1b2749;--bg:#0f1730;--ink:#dfe6ff;--muted:#9eabd2;--line:#25325a;--page:#080d1c;--card:#111a35;--shadow:0,0,0;
+  --tint-a:#0d1531;--tint-b:#0a1129;--vision-a:#0e1733;--vision-b:#1b1733;--inno-a:#0c1431;--inno-b:#111c42;
+  --glow-1:#17244e;--glow-2:#2b2410;--warm-a:#0d1329;--warm-b:#19152e;--lab-b:#17306b;
+  --fx-dot:190,210,255;--fx-link:122,162,255;
+}
+html[data-theme="emerald"]{
+  --navy:#062b27;--deep:#062b27;--deep2:#0d5247;--royal:#0f9d7a;--gold:#f5c04a;--on-gold:#062b27;--on-royal:#fff;
+  --light:#dcf3ea;--bg:#f1fbf6;--ink:#0f2a25;--muted:#4b6a62;--line:#cde5dc;--page:#fff;--card:#fff;--shadow:6,43,39;
+  --tint-a:#effaf5;--tint-b:#dbf2e8;--vision-a:#e2f6ed;--vision-b:#fdf4d6;--inno-a:#ebf8f2;--inno-b:#d3efe2;
+  --glow-1:#d2f0e2;--glow-2:#fbeebf;--warm-a:#fbf8ea;--warm-b:#f6ebc3;--lab-b:#0f6b5c;
+  --fx-dot:220,255,240;--fx-link:245,192,74;
+}
+html[data-theme="sunset"]{
+  --navy:#2a0f3d;--deep:#2a0f3d;--deep2:#5b1f70;--royal:#b83283;--gold:#ff9f43;--on-gold:#2a0f3d;--on-royal:#fff;
+  --light:#fbe6f1;--bg:#fdf5fa;--ink:#2a1230;--muted:#6e4d72;--line:#ecd5e6;--page:#fff;--card:#fff;--shadow:42,15,61;
+  --tint-a:#fcf1f8;--tint-b:#f6dff0;--vision-a:#fbe8f2;--vision-b:#ffeccf;--inno-a:#fbeef7;--inno-b:#f2d9ec;
+  --glow-1:#f6d3e8;--glow-2:#ffe0b8;--warm-a:#fff5ea;--warm-b:#ffe3c2;--lab-b:#7b2a7c;
+  --fx-dot:255,225,240;--fx-link:255,159,67;
+}
+
+/* ---------- 2. Apply the tokens to the existing design ---------- */
+html[data-theme] body{background:var(--page);color:var(--ink)}
+html[data-theme] .site-header{background-color:var(--card)}
+@supports (background:color-mix(in srgb,red,blue)){
+  html[data-theme] .site-header{background-color:color-mix(in srgb,var(--card) 84%,transparent);-webkit-backdrop-filter:blur(14px) saturate(1.5);backdrop-filter:blur(14px) saturate(1.5)}
+}
+html[data-theme] :is(.card:not(.feat),.lab,.theme,.grp,.eq li,.tags li,.acc,.cbox,.fac,.fac figcaption,.ncard,.gal figure,.toc a,.drawer,.cb-panel,.cb-m.bot,.cb-chips button,.cb-form,.cb-form input){background-color:var(--card)}
+html[data-theme] .cb-form input{color:var(--ink)}
+html[data-theme] :is(.vision,.site-footer,.dhead,.news,.cb-btn,.cb-head,.feat){background-color:var(--deep)}
+html[data-theme] .feat{border-color:var(--deep)}
+html[data-theme] .btn.dark{background-color:var(--deep);border-color:var(--deep)}
+html[data-theme] .btn.dark:hover{background-color:var(--royal);border-color:var(--royal)}
+html[data-theme] :is(.btn:not(.dark):not(.ghost),.cb-form button){color:var(--on-gold)}
+html[data-theme] .nctl button:hover{color:var(--on-gold)}
+html[data-theme] .cb-m.me{color:var(--on-royal)}
+html[data-theme] .hero{background:linear-gradient(135deg,var(--deep) 0%,var(--deep2) 100%)}
+html[data-theme] .sec.tint{background:linear-gradient(180deg,var(--tint-a) 0%,var(--tint-b) 100%)}
+html[data-theme] #about{background:radial-gradient(circle at 92% 8%,var(--glow-1) 0,transparent 38%),var(--page)}
+html[data-theme] #vision{background:linear-gradient(135deg,var(--vision-a) 0%,var(--vision-b) 100%)}
+html[data-theme] #laboratories{background:linear-gradient(135deg,var(--deep) 0%,var(--lab-b) 100%)}
+html[data-theme] #innovation{background:linear-gradient(180deg,var(--inno-a) 0%,var(--inno-b) 100%)}
+html[data-theme] #research{background:radial-gradient(circle at 6% 90%,var(--glow-2) 0,transparent 35%),var(--page)}
+html[data-theme] #events{background:linear-gradient(135deg,var(--warm-a) 0%,var(--warm-b) 100%)}
+html[data-theme] #contact{background:radial-gradient(circle at 95% 10%,var(--glow-1) 0,transparent 40%),var(--page)}
+html[data-theme] .fimg{background:linear-gradient(135deg,var(--light),var(--bg))}
+html[data-theme] .gal figure{border-color:var(--line)}
+html[data-theme] .gal figcaption{color:var(--navy);border-top-color:var(--line)}
+@media(max-width:992px){html[data-theme] .nav{background-color:var(--card)}}
+
+/* ---------- 3. Splash (first visit in a tab) ---------- */
+html.fx-splash-on::before{content:"";position:fixed;inset:0;z-index:9998;background:radial-gradient(circle at 50% 45%,var(--deep2),var(--deep) 72%);transition:opacity .7s ease,visibility 0s .7s;animation:fxFailsafe .01s 6s forwards}
+html.fx-splash-on::after{content:"";position:fixed;left:50%;top:50%;width:176px;height:110px;margin:-55px 0 0 -88px;z-index:9999;border-radius:16px;background:#fff url(logo.png) center/contain no-repeat;box-shadow:0 0 0 0 rgba(var(--fx-link),.55),0 24px 60px rgba(0,0,0,.45);transition:opacity .5s ease,visibility 0s .5s;animation:fxLogoIn 1s cubic-bezier(.2,.9,.2,1) both,fxRing 1.7s ease-out .6s infinite,fxFailsafe .01s 6s forwards}
+html.fx-splash-out::before,html.fx-splash-out::after{opacity:0;visibility:hidden}
+@keyframes fxLogoIn{from{transform:scale(.55) rotate(-6deg);filter:blur(10px)}to{transform:none;filter:blur(0)}}
+@keyframes fxRing{to{box-shadow:0 0 0 46px rgba(var(--fx-link),0),0 24px 60px rgba(0,0,0,.45)}}
+@keyframes fxFailsafe{to{opacity:0;visibility:hidden}}
+
+/* ---------- 4. Progress bar, header, navigation ---------- */
+.fx-progress{position:fixed;left:0;top:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--royal),var(--gold));z-index:300;pointer-events:none}
+.site-header{transition:box-shadow .35s,background-color .35s}
+.site-header.fx-scrolled{box-shadow:0 10px 34px rgba(var(--shadow),.2)}
+.brand img{transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.site-header.fx-scrolled .brand img{transform:scale(.88)}
+.brand:hover img{transform:rotate(-4deg) scale(1.06)}
+.nav>a{position:relative}
+.nav>a::after{content:"";position:absolute;left:14px;right:14px;bottom:5px;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.nav>a:hover::after,.nav>a.fx-active::after{transform:scaleX(1);transform-origin:left}
+.nav>a.fx-active{color:var(--royal)}
+html.fx body{animation:fxBody .7s ease backwards}
+@keyframes fxBody{from{opacity:0}}
+html.fx-leaving body{opacity:0;transition:opacity .28s ease}
+
+/* ---------- 5. Hero ---------- */
+.hero{position:relative;overflow:hidden;isolation:isolate}
+.hero>.wrap{position:relative;z-index:2}
+.hero-tall{padding-bottom:124px}
+.fx-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.fx-orb{position:absolute;border-radius:50%;filter:blur(64px);z-index:0;pointer-events:none;will-change:transform;translate:calc(var(--px,0)*var(--k,-40px)) calc(var(--py,0)*var(--k,-40px))}
+.fx-orb.o1{width:440px;height:440px;left:-130px;top:-150px;background:radial-gradient(circle,var(--royal),transparent 66%);opacity:.55;--k:-46px;animation:fxDrift 15s ease-in-out infinite alternate}
+.fx-orb.o2{width:380px;height:380px;right:-90px;bottom:-170px;background:radial-gradient(circle,var(--gold),transparent 66%);opacity:.36;--k:34px;animation:fxDrift 19s ease-in-out -7s infinite alternate-reverse}
+.fx-orb.o3{width:280px;height:280px;left:46%;top:14%;background:radial-gradient(circle,rgba(var(--fx-link),.9),transparent 66%);opacity:.16;--k:-70px;animation:fxDrift 23s ease-in-out -3s infinite alternate}
+@keyframes fxDrift{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(70px,46px,0) scale(1.2)}}
+html.fx .hero{background:linear-gradient(120deg,var(--deep) 0%,var(--deep2) 48%,var(--deep) 100%);background-size:230% 230%;animation:fxGrad 18s ease-in-out infinite alternate}
+@keyframes fxGrad{from{background-position:0% 40%}to{background-position:100% 60%}}
+/* headline: words rise out of a mask, then a soft shimmer passes through */
+.fx-w{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .02em .14em}
+.fx-wi{display:inline-block;will-change:transform}
+html.fx .fx-wi{animation:fxWord 1.1s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:calc(var(--i)*120ms + 180ms)}
+@keyframes fxWord{from{transform:translateY(115%) rotate(5deg);opacity:0;filter:blur(8px)}to{transform:none;opacity:1;filter:blur(0)}}
+@supports ((-webkit-background-clip:text) or (background-clip:text)){
+  html.fx .hero h1 .fx-wi{background:linear-gradient(100deg,#fff 38%,var(--gold) 50%,#fff 62%);background-size:260% 100%;background-position:120% 0;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
+    animation-name:fxWord,fxShimmer;animation-duration:1.1s,7s;animation-delay:calc(var(--i)*120ms + 180ms),2.6s;animation-iteration-count:1,infinite;animation-fill-mode:backwards,none;animation-timing-function:cubic-bezier(.2,.8,.2,1),ease-in-out}
+}
+@keyframes fxShimmer{0%,55%{background-position:120% 0}100%{background-position:-60% 0}}
+html.fx .hero h1::after{transform-origin:left;animation:fxBar 1.2s cubic-bezier(.2,.8,.2,1) 1s backwards}
+@keyframes fxBar{from{transform:scaleX(0)}}
+html.fx .hero .eyebrow{animation:fxUp .8s cubic-bezier(.2,.8,.2,1) .05s backwards}
+html.fx .hero .lead{animation:fxUp .9s cubic-bezier(.2,.8,.2,1) .8s backwards}
+html.fx .hero p:not(.eyebrow):not(.lead),html.fx .hero .chips{animation:fxUp .9s cubic-bezier(.2,.8,.2,1) 1.05s backwards}
+.hero-img{overflow:hidden;box-shadow:0 34px 80px rgba(0,0,0,.38),0 0 0 1px rgba(255,255,255,.08)}
+.hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 36%,rgba(255,255,255,.3) 50%,transparent 64%);transform:translateX(-130%);pointer-events:none}
+html.fx .hero-img{transform:perspective(1100px) rotateY(calc(var(--px,0)*-8deg)) rotateX(calc(var(--py,0)*7deg));animation:fxImgIn 1.3s cubic-bezier(.2,.8,.2,1) .35s backwards,fxFloat 8s ease-in-out 1.7s infinite}
+html.fx .hero-img::after{animation:fxShine 7s ease-in-out 2.4s infinite}
+@keyframes fxImgIn{from{opacity:0;scale:.9;filter:blur(10px)}}
+@keyframes fxFloat{0%,100%{translate:0 0}50%{translate:0 -14px}}
+@keyframes fxShine{0%,60%{transform:translateX(-130%)}100%{transform:translateX(130%)}}
+
+/* ---------- 6. At-a-glance counters ---------- */
+.fx-stats{position:relative;z-index:3;margin-top:-62px;padding-bottom:6px}
+.fx-stats-grid{display:grid;grid-template-columns:repeat(4,1fr);background:var(--card);border:1px solid var(--line);border-top:4px solid var(--gold);border-radius:6px;box-shadow:0 30px 70px rgba(var(--shadow),.2)}
+.fx-stat{position:relative;padding:28px 18px 24px;text-align:center;border-left:1px solid var(--line);overflow:hidden}
+.fx-stat:first-child{border-left:0}
+.fx-stat b{display:block;font-family:Georgia,"Times New Roman",serif;font-size:clamp(2.2rem,4.6vw,3.3rem);line-height:1.05;color:var(--royal);font-variant-numeric:tabular-nums}
+.fx-stat span{display:block;margin-top:6px;font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.fx-stat::before{content:"";position:absolute;left:18%;right:18%;bottom:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:scaleX(0);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.fx-stat:hover::before{transform:scaleX(1)}
+.fx-stat b.fx-done{animation:fxPulseNum .7s cubic-bezier(.2,.9,.3,1.4)}
+@keyframes fxPulseNum{50%{transform:scale(1.14)}}
+
+/* ---------- 7. Scroll reveals ---------- */
+html.fx .fx-item:not(.fx-in){opacity:0}
+html.fx .fx-item.fx-in{animation:fxUp .95s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:var(--d,0ms)}
+html.fx .fx-item.fx-pill.fx-in{animation-name:fxPop;animation-duration:.6s}
+html.fx .fx-item.fx-row.fx-in{animation-name:fxSlide;animation-duration:.8s}
+@keyframes fxUp{from{opacity:0;transform:translateY(38px) scale(.96);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes fxPop{from{opacity:0;transform:translateY(10px) scale(.7)}to{opacity:1;transform:none}}
+@keyframes fxSlide{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:none}}
+html.fx .eyebrow{transition:letter-spacing 1.2s cubic-bezier(.2,.8,.2,1),opacity .8s}
+html.fx .reveal:not(.in) .eyebrow{letter-spacing:.42em;opacity:0}
+html.fx .sec h2::after{transition:width 1s cubic-bezier(.2,.8,.2,1) .3s}
+html.fx .reveal:not(.in) h2::after{width:0}
+.fx-vw{display:inline-block}
+html.fx .fx-vw{opacity:0;transform:translateY(.45em);filter:blur(5px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1),filter .7s ease;transition-delay:calc(var(--i)*36ms + 250ms)}
+html.fx .vision.fx-in .fx-vw{opacity:1;transform:none;filter:none}
+.cbox .num{align-self:flex-start;transform-origin:0 60%;transition:transform .45s cubic-bezier(.2,.9,.3,1.4)}
+.cbox:hover .num{transform:scale(1.18) rotate(-6deg)}
+
+/* ---------- 8. Tilt, glare, buttons ---------- */
+.fx-tilt{position:relative;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .3s,border-color .3s}
+.fx-tilt:hover{box-shadow:0 22px 46px rgba(var(--shadow),.2)}
+.fx-tilt::after,.cbox summary::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .35s;background:radial-gradient(380px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.2),transparent 55%)}
+@supports (background:color-mix(in srgb,red,blue)){
+  .fx-tilt::after,.cbox summary::after{background:radial-gradient(380px circle at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--gold) 26%,transparent),transparent 58%)}
+}
+.fx-tilt:hover::after,.cbox:hover summary::after{opacity:1}
+.cbox summary{position:relative}
+.btn{position:relative;overflow:hidden}
+.btn::before{content:"";position:absolute;top:0;left:-90%;width:55%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);transition:left .8s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.btn:hover::before{left:140%}
+.fx-rip{position:absolute;border-radius:50%;background:rgba(255,255,255,.5);pointer-events:none;transform:translate(-50%,-50%) scale(0);animation:fxRip .75s ease-out forwards}
+@keyframes fxRip{to{transform:translate(-50%,-50%) scale(1);opacity:0}}
+.ncard{transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s;overflow:hidden}
+.ncard:hover{transform:translateY(-5px);box-shadow:0 14px 30px rgba(0,0,0,.28)}
+.ncard img{transition:transform .8s cubic-bezier(.2,.8,.2,1)}.ncard:hover img{transform:scale(1.08)}
+.fac .fimg img{transition:transform 1s cubic-bezier(.2,.8,.2,1)}.fac:hover .fimg img{transform:scale(1.09)}
+.gal img{transition:transform .8s cubic-bezier(.2,.8,.2,1)!important}
+
+/* ---------- 9. Centre cards: smooth open + staggered content ---------- */
+html.fx .cbox[open] .cb :is(.tags li,.eqs li){animation:fxPop .6s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:calc(var(--i,0)*34ms + 140ms)}
+html.fx .cbox[open] .cb :is(p,h4,.btn){animation:fxUp .7s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:.1s}
+
+/* ---------- 10. Marquee bands ---------- */
+.fx-marquee{position:relative;overflow:hidden;background:var(--deep);padding:26px 0;border-block:1px solid rgba(255,255,255,.08)}
+.fx-marquee::before,.fx-marquee::after{content:"";position:absolute;top:0;bottom:0;width:90px;z-index:2;pointer-events:none}
+.fx-marquee::before{left:0;background:linear-gradient(90deg,var(--deep),transparent)}.fx-marquee::after{right:0;background:linear-gradient(-90deg,var(--deep),transparent)}
+.fx-mrow{display:flex;width:max-content}
+.fx-mrow+.fx-mrow{margin-top:10px}
+.fx-mrow span{font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:clamp(1.3rem,3.2vw,2.1rem);white-space:nowrap;padding:0 26px;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.55)}
+.fx-mrow span:nth-child(3n){color:var(--gold);-webkit-text-stroke:0}
+.fx-mrow.alt span{font-size:clamp(1rem,2.2vw,1.4rem);letter-spacing:.14em;text-transform:uppercase;font-family:"Segoe UI",system-ui,sans-serif;-webkit-text-stroke:0;color:rgba(255,255,255,.55)}
+.fx-mrow.alt span:nth-child(even){color:rgba(var(--fx-link),.95)}
+html.fx .fx-mrow{animation:fxMarq 55s linear infinite}
+html.fx .fx-mrow.alt{animation-duration:40s;animation-direction:reverse}
+html.fx .fx-marquee:hover .fx-mrow{animation-play-state:paused}
+@keyframes fxMarq{to{transform:translateX(-50%)}}
+html:not(.fx) .fx-marquee{display:none}
+
+/* ---------- 11. Theme dock, back-to-top, cursor glow ---------- */
+.fx-dock{position:fixed;left:20px;bottom:20px;z-index:150}
+.fx-dock-btn{width:54px;height:54px;border-radius:50%;border:3px solid var(--gold);background:var(--deep);color:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:0 8px 24px rgba(var(--shadow),.38);transition:transform .45s cubic-bezier(.2,.9,.3,1.4)}
+.fx-dock-btn:hover{transform:rotate(24deg) scale(1.08)}
+.fx-dock.open .fx-dock-btn{transform:rotate(180deg)}
+.fx-dock-panel{position:absolute;left:0;bottom:68px;width:246px;background:var(--card);color:var(--ink);border:1px solid var(--line);border-top:4px solid var(--gold);padding:14px 16px 14px;box-shadow:0 20px 50px rgba(var(--shadow),.32);transform-origin:0 100%;opacity:0;visibility:hidden;transform:translateY(12px) scale(.9);transition:opacity .25s,transform .35s cubic-bezier(.2,.9,.3,1.25),visibility 0s .35s}
+.fx-dock.open .fx-dock-panel{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+.fx-dh{font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.fx-swatches{display:flex;gap:12px;margin:12px 0 10px}
+.fx-sw{width:42px;height:42px;border-radius:50%;border:2px solid var(--line);background:linear-gradient(135deg,var(--a) 0 50%,var(--b) 50% 100%);cursor:pointer;padding:0;transition:transform .3s cubic-bezier(.2,.9,.3,1.4),box-shadow .3s}
+.fx-sw:hover{transform:translateY(-4px) scale(1.1)}
+.fx-sw[aria-pressed="true"]{box-shadow:0 0 0 3px var(--card),0 0 0 5px var(--royal)}
+.fx-tname{display:block;font-weight:700;font-size:.9rem;color:var(--navy);min-height:1.4em}
+.fx-fxbtn{margin-top:12px;width:100%;display:flex;justify-content:space-between;align-items:center;gap:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:9px 12px;font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
+.fx-fxbtn i{position:relative;flex:none;width:38px;height:22px;border-radius:99px;background:var(--line);transition:background .3s}
+.fx-fxbtn i::after{content:"";position:absolute;left:3px;top:3px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.35);transition:transform .35s cubic-bezier(.2,.9,.3,1.4)}
+.fx-fxbtn[aria-pressed="true"] i{background:var(--royal)}.fx-fxbtn[aria-pressed="true"] i::after{transform:translateX(16px)}
+.fx-top{position:fixed;right:24px;bottom:92px;z-index:140;width:48px;height:48px;border-radius:50%;border:0;padding:0;background:var(--card);color:var(--navy);display:grid;place-items:center;cursor:pointer;box-shadow:0 8px 22px rgba(var(--shadow),.28);opacity:0;visibility:hidden;transform:translateY(16px) scale(.8);transition:opacity .35s,transform .45s cubic-bezier(.2,.9,.3,1.4),visibility 0s .45s}
+.fx-top.show{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+.fx-top:hover{transform:translateY(-4px)}
+.fx-top svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.fx-top .bg{stroke:var(--line)}.fx-top .fg{stroke:var(--gold);stroke-linecap:round;stroke-dasharray:138.23;stroke-dashoffset:138.23}
+.fx-top .arr{position:relative;width:18px;height:18px}
+.fx-glow{position:fixed;left:0;top:0;width:560px;height:560px;margin:-280px 0 0 -280px;z-index:40;pointer-events:none;opacity:0;transition:opacity .5s;background:radial-gradient(circle,rgba(var(--fx-link),.13),transparent 62%);will-change:transform}
+.fx-glow.on{opacity:1}
+
+/* ---------- 12. Chatbot polish ---------- */
+.cb-btn::after{content:"";position:absolute;inset:-3px;border-radius:50%;border:2px solid var(--gold);pointer-events:none;opacity:0}
+html.fx .cb-btn::after{animation:fxPulse 2.8s ease-out 2s infinite}
+@keyframes fxPulse{0%{transform:scale(1);opacity:.85}100%{transform:scale(1.7);opacity:0}}
+html.fx .cb-btn:hover svg{animation:fxWiggle .6s ease}
+@keyframes fxWiggle{25%{transform:rotate(-12deg)}75%{transform:rotate(12deg)}}
+html.fx .cb-panel.open{transform-origin:100% 100%;animation:fxPanel .42s cubic-bezier(.2,.9,.3,1.15)}
+@keyframes fxPanel{from{opacity:0;transform:translateY(20px) scale(.88)}}
+html.fx .cb-m{animation:fxMsg .4s cubic-bezier(.2,.8,.2,1) backwards}
+@keyframes fxMsg{from{opacity:0;transform:translateY(10px) scale(.96)}}
+.cb-typing{display:flex;gap:5px;padding:13px 14px}
+.cb-typing span{width:7px;height:7px;border-radius:50%;background:var(--royal);opacity:.35;animation:fxDot 1s ease-in-out infinite}
+.cb-typing span:nth-child(2){animation-delay:.15s}.cb-typing span:nth-child(3){animation-delay:.3s}
+@keyframes fxDot{50%{transform:translateY(-5px);opacity:1}}
+
+/* ---------- 13. Theme change transition ---------- */
+html.fx-theming *,html.fx-theming *::before,html.fx-theming *::after{transition:background-color .6s,color .6s,border-color .6s,fill .6s,stroke .6s,box-shadow .6s!important}
+::view-transition-old(root),::view-transition-new(root){animation:none;mix-blend-mode:normal}
+::view-transition-new(root){animation:fxReveal .85s cubic-bezier(.4,0,.2,1) both}
+::view-transition-old(root){z-index:1}::view-transition-new(root){z-index:2}
+@keyframes fxReveal{from{clip-path:circle(0 at var(--vt-x,50%) var(--vt-y,50%))}to{clip-path:circle(150vmax at var(--vt-x,50%) var(--vt-y,50%))}}
+
+/* ---------- 14. Responsive + accessibility ---------- */
+@media(max-width:992px){.fx-stats-grid{grid-template-columns:repeat(2,1fr)}.fx-stat:nth-child(3){border-left:0}.fx-stat:nth-child(n+3){border-top:1px solid var(--line)}}
+@media(max-width:576px){.fx-dock{left:12px;bottom:12px}.fx-dock-btn{width:48px;height:48px}.fx-top{right:16px;bottom:82px}.hero-tall{padding-bottom:104px}.fx-stat{padding:20px 10px 18px}.fx-orb{filter:blur(48px)}}
+@media(prefers-reduced-motion:reduce){
+  .fx-progress{transition:none}
+  html.fx *,html.fx *::before,html.fx *::after{animation:none!important}
+  .fx-orb,.fx-canvas,.fx-glow{display:none}
+}
