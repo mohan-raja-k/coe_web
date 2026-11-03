@@ -329,3 +329,51 @@ ready(function(){
   window.addEventListener('pageshow',function(){root.classList.remove('fx-leaving');});
 });
 })();
+/* ==========================================================================
+   COLOUR BOOST - extras (floating shapes in every section; "Explore other
+   centres" strip on the centre pages). Part of fx.js - no extra files needed.
+   ========================================================================== */
+(function(){
+'use strict';
+function qa(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));}
+function el(t,c,x){var e=document.createElement(t);if(c){e.className=c;}if(x!==undefined){e.textContent=x;}return e;}
+function init(){
+  /* 1. floating shapes behind the content of each section */
+  var kinds=['s-ring','s-plus','s-tri','s-sq','s-dot','s-ring','s-plus','s-dot'],cols=['var(--ac1)','var(--ac3)','var(--ac2)','var(--ac4)'];
+  qa('main .sec').forEach(function(sec,n){
+    var box=el('div','vx-shapes');box.setAttribute('aria-hidden','true');
+    for(var i=0;i<7;i++){
+      var s=el('i',kinds[(i+n)%kinds.length]);
+      s.style.left=(3+Math.random()*92)+'%';s.style.top=(5+Math.random()*88)+'%';
+      s.style.setProperty('--kc',cols[(i+n)%cols.length]);
+      s.style.setProperty('--z',(20+Math.random()*30).toFixed(0)+'px');
+      s.style.setProperty('--d',(18+Math.random()*22).toFixed(0)+'s');
+      s.style.animationDelay=(-Math.random()*20).toFixed(1)+'s';
+      box.appendChild(s);
+    }
+    sec.insertBefore(box,sec.firstChild);
+  });
+
+  /* 2. "Explore other centres" strip on centre pages (before the footer) */
+  var footer=document.querySelector('.site-footer'),links=qa('.site-footer .fl a');
+  if(!document.querySelector('.crumb')||!footer||!links.length){return;}
+  var META={'rehabilitation':['\uD83E\uDDBE','CREAT'],'semiconductor':['\uD83D\uDD0C','CSPDT'],'manufacturing':['\uD83D\uDEE0\uFE0F','CAM3D'],
+    'ev-battery':['\uD83D\uDD0B','CEBT'],'bioengineering':['\uD83E\uDDEC','CBE'],'drug-discovery':['\uD83D\uDC8A','CD3'],
+    'web-development':['\uD83D\uDCBB','Web CoE'],'iot':['\uD83D\uDCE1','IoT CoE'],'smart-agriculture':['\uD83C\uDF31','CSACC'],'drone':['\uD83D\uDE81','Drone CoE']};
+  var strip=el('section','vx-strip'),wrap=el('div','wrap'),view=el('div','vx-view'),track=el('div','vx-track');
+  wrap.appendChild(el('p','eyebrow','KEEP EXPLORING'));wrap.appendChild(el('h2',null,'Explore other centres'));
+  [0,1].forEach(function(copy){
+    links.forEach(function(a){
+      var m=a.getAttribute('href').match(/([^\/]+)\.html/),slug=m?m[1]:'',meta=META[slug]||['\uD83D\uDD2C',a.textContent.slice(0,14)];
+      var p=el('a','vx-pill');p.href=a.getAttribute('href');
+      p.appendChild(el('b',null,meta[0]));p.appendChild(document.createTextNode(meta[1]));p.title=a.textContent;
+      if(location.pathname.indexOf('/'+slug+'/')>-1){p.className+=' cur';p.setAttribute('aria-current','page');}
+      if(copy){p.tabIndex=-1;p.setAttribute('aria-hidden','true');}
+      track.appendChild(p);
+    });
+  });
+  view.appendChild(track);wrap.appendChild(view);strip.appendChild(wrap);
+  footer.parentNode.insertBefore(strip,footer);
+}
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
+})();
