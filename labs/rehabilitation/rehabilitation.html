@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Centre for Rehabilitation Engineering and Assistive Technologies (CREAT) | Nalanda Research Sanctum</title><meta name="description" content="Centre for Rehabilitation Engineering and Assistive Technologies (CREAT) - Nalanda Research Sanctum, VMKVEC.">
+<link rel="icon" href="../../logo.jpeg"><link rel="stylesheet" href="../../style.css"><style>.hero .btn.ghost{color:#fff;border-color:#93c5fd}.hero .btn.ghost:hover{background:rgba(255,255,255,.14);color:#fff}.hero .btn{margin:0 8px 8px 0}[hidden]{display:none!important}.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-top:24px}.gal figure{margin:0;background:#fff;border:1px solid #dfe5ef;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(18,40,95,.06)}.gal figure a{display:block}.gal img{width:100%;height:210px;object-fit:contain;background:#fff;padding:10px;display:block;transition:transform .25s}.gal figure:hover img{transform:scale(1.04)}.gal figcaption{padding:12px 14px;border-top:1px solid #eef1f6;font-weight:600;font-size:.95rem;text-align:center;color:#12285f}</style><script src="../../script.js"></script><script src="../../chatbot.js" defer></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap bar">
+<a class="brand" href="../../index.html"><img src="../../logo.jpeg" alt="VMKVEC logo"><span><b>NALANDA RESEARCH SANCTUM</b><small>VMKVEC</small></span></a>
+<input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open or close menu"><label for="nav-toggle" class="burger" aria-hidden="true"><i></i></label>
+<nav class="nav" aria-label="Main"><a href="../../index.html">Home</a><a href="../../index.html#about">About</a><a href="../../index.html#vision">Vision &amp; Mission</a><a href="../../index.html#laboratories">Research Centers</a><a href="../../index.html#events">Scientific Services</a></nav></div></header><main id="main">
+<nav class="wrap crumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> / <a href="../../index.html#laboratories">Research Centers</a> / CREAT</nav>
+<section class="hero"><div class="wrap"><p class="eyebrow light">RESEARCH CENTRE 01 OF 10</p><h1>Centre for Rehabilitation Engineering and Assistive Technologies (CREAT)</h1><p class="lead">Rehabilitation &amp; Assessment Facility</p>
+<p><a class="btn" href="#contact">Contact the centre</a> <a class="btn ghost" href="../../index.html#laboratories">&larr; All centres</a></p></div></section>
+<section class="sec"><div class="wrap reveal"><p class="eyebrow">ABOUT THE CENTRE</p><h2>About the Centre</h2><p class="lead2">CREAT advances rehabilitation engineering through the integration of biomedical engineering, robotics and assistive technologies. The centre supports the assessment of human movement, rehabilitation training and the development of technology-enabled solutions to improve functional mobility and patient recovery.</p><ul class="tags"><li>Rehabilitation Engineering</li><li>Assistive Technologies</li><li>Movement and Functional Assessment</li><li>Virtual Rehabilitation</li><li>Human Performance Analysis</li></ul></div></section>
+<section class="sec tint"><div class="wrap reveal"><p class="eyebrow">RESEARCH FOCUS</p><h2>Research Focus of the Centre</h2><div class="grid g3"><article class="card"><h3>01</h3><p>Develop and evaluate robotic and virtual rehabilitation systems for functional recovery and therapeutic training.</p></article><article class="card"><h3>02</h3><p>Analyse human movement, plantar pressure, balance and reaction responses using specialized assessment systems.</p></article><article class="card"><h3>03</h3><p>Explore assistive technologies and data-driven rehabilitation methods to improve mobility, functional performance and personalized rehabilitation.</p></article></div></div></section>
+<section class="sec"><div class="wrap reveal"><p class="eyebrow">EQUIPMENT &amp; FACILITIES</p><h2>Rehabilitation &amp; Assessment Facility</h2><ul class="eqs" style="margin-top:24px"><li>Robotic Rehabilitation System</li><li>Motion Analysis System</li><li>Plantar Pressure Analysis System</li><li>Balance Assessment System</li><li>Reaction Training System</li><li>Rehametrics - Pro Physical Virtual Rehabilitation Solutions</li><li>Ropods - Spot - Reach True Flash-Reflex Training System</li><li>Balance Assessment System - Btracks Balance Plate</li><li>EMG Biofeedback - Joint Mobility &amp; Muscle Function</li></ul></div></section>
+<section class="sec" id="gallery" hidden><div class="wrap reveal"><p class="eyebrow">PHOTOS</p><h2>Equipment Gallery</h2><div class="gal" id="gal"></div></div></section>
+<script>
+(function(){
+var IMAGES=[]; /* optional: list files by path inside this lab folder, e.g. ["images/PCR.jpg"]. If empty, every picture found in the "images" folder is shown (Live Server). */
+var DIRS=['images/','image/','Images/','Image/'];
+var NICE={'dna rna sequencing machine':'DNA/RNA Sequencing Machine','sds page':'SDS-PAGE','milli q water purification system':'MILLI-Q Water Purification System','uv visible spectrometer':'UV-Visible Spectrometer'}; /* nicer captions; other captions come from the file name */
+var sec=document.getElementById('gallery'),box=document.getElementById('gal');
+function cap(p){var n=p.split('/').pop().replace(/\.[^.]+$/,'').replace(/[_-]+/g,' ').replace(/\s+/g,' ').trim();return NICE[n.toLowerCase()]||n;}
+function show(list){
+  if(!list.length){return;}
+  list.sort(function(a,b){return a.split('/').pop().localeCompare(b.split('/').pop(),undefined,{numeric:true,sensitivity:'base'});});
+  list.forEach(function(p){
+    var f=document.createElement('figure'),a=document.createElement('a'),i=document.createElement('img'),c=document.createElement('figcaption');
+    a.href=encodeURI(p);a.target='_blank';a.rel='noopener';i.src=a.href;i.loading='lazy';i.alt=cap(p);c.textContent=cap(p);
+    a.appendChild(i);f.appendChild(a);f.appendChild(c);box.appendChild(f);
+  });
+  sec.hidden=false;
+}
+if(IMAGES.length){show(IMAGES.slice());return;}
+if(!window.fetch||!window.DOMParser){return;}
+Promise.all(DIRS.map(function(d){
+  return fetch(d).then(function(r){return r.ok?r.text():'';}).then(function(t){
+    var out=[];
+    new DOMParser().parseFromString(t,'text/html').querySelectorAll('a').forEach(function(a){
+      var n=(a.getAttribute('href')||'').split('/').pop();try{n=decodeURIComponent(n);}catch(e){}
+      if(/\.(jpe?g|png|webp|gif|avif)$/i.test(n)){out.push(d+n);}
+    });
+    return out;
+  }).catch(function(){return [];});
+})).then(function(all){
+  var seen={},list=[];
+  all.forEach(function(l){l.forEach(function(p){var k=p.toLowerCase();if(!seen[k]){seen[k]=1;list.push(p);}});});
+  show(list);
+});
+})();
+</script>
+<section class="sec tint" id="contact"><div class="wrap reveal"><p class="eyebrow">CONTACT</p><h2>Contact</h2><address class="card contact"><h3>CREAT</h3><p>Nalanda Research Sanctum, Vinayaka Mission's Kirupananda Variyar Engineering College, Salem</p><p><a href="mailto:bme.nrs@vmkvec.edu.in">bme.nrs@vmkvec.edu.in</a></p></address>
+<p style="margin-top:28px"><a class="btn dark" href="../drone/drone.html">&larr; Previous centre</a> <a class="btn dark" href="../semiconductor/semiconductor.html">Next centre &rarr;</a></p></div></section>
+</main><footer class="site-footer"><div class="wrap fgrid">
+<div><h3>Nalanda Research Sanctum<br>VMKVEC</h3><p>Research &bull; Innovation &bull; Incubation</p>
+<p>Nalanda Research Sanctum, Vinayaka Mission's Kirupananda Variyar Engineering College, Salem.</p>
+<ul class="social"><li>Institutional LinkedIn</li><li>Twitter/X</li><li>Email</li></ul><p class="note2">Social and contact links will be updated by VMKVEC.</p></div>
+<div><h4>Quick Links</h4><ul><li><a href="../../index.html">Home</a></li><li><a href="../../index.html#about">About</a></li><li><a href="../../index.html#vision">Vision &amp; Mission</a></li><li><a href="../../index.html#laboratories">Research Centers</a></li><li><a href="../../index.html#events">Scientific Services</a></li><li><a href="../../index.html#contact">Contact</a></li></ul></div>
+<div class="fl"><h4>Centers</h4><ul><li><a href="../rehabilitation/rehabilitation.html">Centre for Rehabilitation Engineering and Assistive Technologies (CREAT)</a></li><li><a href="../semiconductor/semiconductor.html">Centre for Semiconductor and PCB Design Technologies (CSPDT)</a></li><li><a href="../manufacturing/manufacturing.html">Centre for Advanced Manufacturing, Nano Materials & 3D Printing (CAM3D)</a></li><li><a href="../ev-battery/ev-battery.html">Centre for EV & Battery Technologies (CEBT)</a></li><li><a href="../bioengineering/bioengineering.html">Centre for Bioengineering (CBE)</a></li><li><a href="../drug-discovery/drug-discovery.html">Centre for Drug Discovery and Development (CD3)</a></li><li><a href="../web-development/web-development.html">Centre of Excellence in Web Application and Development</a></li><li><a href="../iot/iot.html">Centre of Excellence in Internet of Things - C-DAC Bangalore</a></li><li><a href="../smart-agriculture/smart-agriculture.html">Centre for Smart Agriculture and Climate Change (CSACC)</a></li><li><a href="../drone/drone.html">Drone Centre of Excellence</a></li></ul></div></div>
+<div class="copy">&copy; 2026 Nalanda Research Sanctum | VMKVEC</div></footer></body></html>
