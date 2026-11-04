@@ -391,3 +391,13 @@ html[data-theme] #laboratories h2{background:linear-gradient(90deg,#fff,var(--go
   html .nav>a,html .dd>a{padding:9px 6px;font-size:.78rem}
   html .nav>a::after{left:6px;right:6px}
 }
+
+/* ---------- Header menu: a different colour for each link ---------- */
+:root{--nc1:#2f5bea;--nc2:#db2777;--nc3:#0d9488;--nc4:#ea580c;--nc5:#7c3aed;--nc6:#16a34a;--nc7:#0284c7}
+html[data-theme="midnight"]{--nc1:#7aa2ff;--nc2:#ff6fae;--nc3:#2dd4bf;--nc4:#ffa05a;--nc5:#b794ff;--nc6:#5eea8f;--nc7:#5cc8ff}
+.nav>a:nth-child(7n+1){--nc:var(--nc1)}.nav>a:nth-child(7n+2){--nc:var(--nc2)}.nav>a:nth-child(7n+3){--nc:var(--nc3)}
+.nav>a:nth-child(7n+4){--nc:var(--nc4)}.nav>a:nth-child(7n+5){--nc:var(--nc5)}.nav>a:nth-child(7n+6){--nc:var(--nc6)}.nav>a:nth-child(7n+7){--nc:var(--nc7)}
+html .site-header .nav>a{color:var(--nc,var(--navy));font-weight:700;transition:background-color .25s,color .25s,transform .25s,box-shadow .25s}
+html .site-header .nav>a::after{background:var(--nc,var(--gold))}
+html .site-header .nav>a:hover,html .site-header .nav>a:focus-visible,html .site-header .nav>a.fx-active{background:color-mix(in srgb,var(--nc,var(--royal)) 14%,transparent);color:var(--nc,var(--royal));transform:translateY(-2px);box-shadow:0 6px 16px color-mix(in srgb,var(--nc,var(--royal)) 22%,transparent)}
+html .site-header .nav>a.fx-active{background:color-mix(in srgb,var(--nc,var(--royal)) 18%,transparent)}
