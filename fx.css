@@ -370,3 +370,24 @@ html[data-theme] #laboratories h2{background:linear-gradient(90deg,#fff,var(--go
 
 /* Equipment-photos box removed from all centre pages (also hides it if an old cached lab-fx.js still adds it) */
 .lx-stats .lx-stat:nth-child(n+3){display:none!important}
+
+/* ---------- Header: menu always on ONE line (desktop); burger menu below 993px ---------- */
+@media(min-width:993px){
+  html .site-header .bar{flex-wrap:nowrap;gap:14px}
+  html .brand{flex:0 0 auto}
+  html .brand b,html .brand small{white-space:nowrap}
+  html .brand b{font-size:.92rem;letter-spacing:.05em}
+  html .nav{flex-wrap:nowrap;gap:2px;min-width:0}
+  html .nav>a,html .dd>a{white-space:nowrap;padding:10px 9px;font-size:.88rem}
+  html .nav>a::after{left:9px;right:9px}
+}
+@media(min-width:993px) and (max-width:1200px){
+  html .site-header .bar{gap:8px}
+  html .brand{gap:8px}
+  html .brand img{width:40px;height:40px}
+  html .brand b{font-size:.76rem;letter-spacing:.02em}
+  html .brand small{font-size:.7rem;letter-spacing:.08em}
+  html .nav{gap:0}
+  html .nav>a,html .dd>a{padding:9px 6px;font-size:.78rem}
+  html .nav>a::after{left:6px;right:6px}
+}
